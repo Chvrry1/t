@@ -1,0 +1,43 @@
+{% extends "maestra.html" %}
+{% block titulo %} Catálogo de Videos {% endblock %}
+{% block contenido %}
+
+<section class="section">
+    <div class="container mt-5">
+        <h1>Catálogo de Videos</h1>
+        <div class="row">
+            <div class="col-6">
+                <h3>Videos Sin Procesar</h3>
+                <div id="rawVideos" class="video-list">
+                    <!-- Lista de videos sin procesar -->
+                    {% for video in raw_videos %}
+                        <div class="video-item">
+                            <video width="320" height="240" controls>
+                                <source src="{{ url_for('send_input_file', filename=video) }}" type="video/mp4">
+                                Tu navegador no soporta la etiqueta de video.
+                            </video>
+                            <p>{{ video }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-6">
+                <h3>Videos Procesados</h3>
+                <div id="processedVideos" class="video-list">
+                    <!-- Lista de videos procesados -->
+                    {% for video in processed_videos %}
+                        <div class="video-item">
+                            <video width="320" height="240" controls>
+                                <source src="{{ url_for('send_output_file', filename=video) }}" type="video/mp4">
+                                Tu navegador no soporta la etiqueta de video.
+                            </video>
+                            <p>{{ video }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{{ url_for('static', filename='catalogo.js') }}"></script>
+{% endblock %}

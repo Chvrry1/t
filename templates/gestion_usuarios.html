@@ -1,0 +1,61 @@
+{% extends "maestra.html" %}
+{% block titulo %}Gestión de Usuarios{% endblock %}
+{% block contenido %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Gestión de Usuarios</h1>
+    <div class="mb-3">
+        <label for="filterState" class="form-label">Filtrar por estado:</label>
+        <select id="filterState" class="form-select" onchange="filterUsers()">
+            <option value="all">Todos</option>
+            <option value="1">Activos</option>
+            <option value="0">Inactivos</option>
+        </select>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="usersTable">
+            {% for usuario in usuarios %}
+            <tr data-estado="{{ usuario[2] }}">
+                <td>{{ usuario[0] }}</td>
+                <td>{{ usuario[1] }}</td>
+                <td>{{ 'Activo' if usuario[2] == '1' else 'Inactivo' }}</td>
+                <td>
+                    {% if usuario[2] == '0' %}
+                        <a href="{{ url_for('cambiar_estado_usuario', usuario_id=usuario[0], estado=1) }}" class="btn btn-success">
+                            Dar de alta
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('cambiar_estado_usuario', usuario_id=usuario[0], estado=0) }}" class="btn btn-danger">
+                            Dar de baja
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+function filterUsers() {
+    const filterValue = document.getElementById('filterState').value;
+    const rows = document.querySelectorAll('#usersTable tr');
+
+    rows.forEach(row => {
+        if (filterValue === 'all') {
+            row.style.display = '';
+        } else if (row.getAttribute('data-estado') === filterValue) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+</script>
+{% endblock %}

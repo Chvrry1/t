@@ -1,0 +1,25 @@
+{% extends "maestra.html" %}
+{% block titulo %}Log de Sesiones{% endblock %}
+{% block contenido %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Log de Sesiones</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID Usuario</th>
+                <th>Nombre usuario</th>
+                <th>Fecha y Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sesion in sesiones %}
+            <tr>
+                <td>{{ sesion[0] }}</td>
+                <td>{{ sesion[1] }}</td>
+                <td>{{ sesion[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

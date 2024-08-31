@@ -1,0 +1,20 @@
+item {
+  id: 1
+  name: 'black_gb'
+}
+
+item {
+  id: 2
+  name: 'blue_gb'
+}
+
+item {
+  id: 3
+  name: 'white_gb'
+}
+
+item {
+  id: 4
+  name: 'yellow_gb'
+}
+

@@ -1,0 +1,27 @@
+{% extends "maestra.html" %}
+{% block titulo %}Log de Archivos{% endblock %}
+{% block contenido %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Log de Archivos</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID Usuario</th>
+                <th>Nombre usuario</th>
+                <th>Archivo</th>
+                <th>Fecha y hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for archivo in archivos %}
+            <tr>
+                <td>{{ archivo[0] }}</td>
+                <td>{{ archivo[1] }}</td>
+                <td>{{ archivo[2] }}</td>
+                <td>{{ archivo[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
